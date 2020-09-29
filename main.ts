@@ -192,4 +192,3 @@ let my_sprite4 = sprites.create(img`
     . . . . . . . . . . . . . . . .
 `)
 frog.ay = 100
-frog.y = 40
