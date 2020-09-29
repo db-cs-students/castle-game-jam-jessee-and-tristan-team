@@ -3,7 +3,7 @@ Title: Frog Castle.
 Creators:jessee and tristan 
 Description:you're a frog who doesn't like the castle.
 """
-my_sprite = sprites.create(img("""
+frog = sprites.create(img("""
     ..........77f77777f77.........
     ..........77777777777.........
     ............77333337..........
@@ -67,3 +67,131 @@ my_sprite2 = sprites.create(img("""
     ..........fffff............fffff..................
     ..........fffff............fffff..................
 """))
+scene.set_tile_map(img("""
+    ....................................................................................................
+    ...........................................................a........................................
+    ...........a......................aa.aa.a.a.aa.......a.a.a....a.....................................
+    ..........aaa......aaa....a....aa.............a.a..a..........................7777777777777777777777
+    .........aaaaa....aaaaa.a..aaa......777777777777777777777777777777777777777777eeeeeeeeeeeeeeeeeeeeee
+    777777777777777777777777777777777777eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    ....................................................................................................
+    ....................................................................................................
+"""))
+controller.move_sprite(frog)
+scene.camera_follow_sprite(frog)
+scene.set_tile(7, img("""
+    7 7 7 7 7 7 7 7 7 7 f f f f 7 7
+    e e 7 e 7 e 7 e 7 7 7 7 f 7 7 e
+    e 7 e e 7 e 7 e 7 7 7 7 7 7 e e
+    e 7 e e e e 7 e e 7 7 7 7 7 7 e
+    7 e e e e e e 7 e e e e 7 7 7 e
+    e e e e e e e 7 e e e 7 e 7 e e
+    e e e e e e e 7 e e e 7 e 7 e e
+    e e e e e e e 7 e e 7 e e 7 e e
+    e e e e e e e 7 e e e e e e e e
+    e e e e e e e 7 7 e e e e e e e
+    e e e e e e e e 7 7 e e e e e e
+    e e e e e e e e e e e e e e e e
+    e e e e e e e e e e e e e e e e
+    e e e e e e e e e e e e e e e e
+    e e e e e e e e e e e e e e e e
+    e e e e e e e e e e e e e e e e
+"""))
+scene.set_tile(7,
+    img("""
+        7 7 8 7 7 7 3 7 7 3 7 7 7 8 7 7
+        7 3 7 7 3 7 7 7 7 7 7 7 7 7 7 7
+        7 7 7 7 7 7 7 7 8 7 7 7 7 3 7 7
+        7 e e 8 e e 7 e e e 7 e e 7 7 7
+        e e 7 e e e e 7 7 e e e e 7 e 7
+        e e 7 e e e e e e 7 7 e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+        e e e e e e e e e e e e e e e e
+    """),
+    True)
+
+scene.set_tile(10, img("""
+    a a a a c a a a c a a a a a a c
+    a a a a c a c c c a a a c c c a
+    a a a c a a c a c a a c a a a a
+    a a a c a c c a a c c a a a a a
+    a a c a c c c c c c a a a a a a
+    a a c c a c c c c c c c c c c c
+    a a c c c c c c a c c a a a c a
+    a a c c c c c c c c c a a c c a
+    a c c c c c c a a c c a a c a a
+    a c c c a c a a c c c a c a a a
+    c a c c c c c c c c c c c a a a
+    c a c a c c c a c c a c a a a a
+    c c c c c c c c a c c a a a c a
+    a a c a a a c a c a c a a a c a
+    a a c a a a a c a a a a a a c a
+    a a c a a a a a a a a a a a c a
+""")),
+game.runtime()  
+my_sprite = sprites.create(img("""
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . 1 1 1 . . . . 1 1 1 . . . .
+    . . . 1 1 1 . . 1 1 1 . . . . .
+    . . . . 1 1 1 1 1 1 . . . . . .
+    . . . . c c c c c c . . . . . .
+    . . . c c c c c c c c . . . . .
+    . . c c c c c c c c c c . . . .
+    . . c c c c c c c c 2 c . . . .
+    . . c c c c c c c c c c . . . .
+    . . . c c c c c c c c . . . . .
+    . . . . c c c c c c . . . . . .
+    . . . . . c . c . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""))
+my_sprite3 = sprites.create(img("""
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . c c . . . .
+    . . . . . . . . . . . c c . . .
+    . . . . . . . . . . . . c . . .
+    . . . . . . . . . . . c c . . .
+    . . . . c c . . . . c c . . . .
+    . . . . . c c c c c c . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""))
+my_sprite4 = sprites.create(img("""
+    . . . . . . . . . . . . . . . .
+    . . . . 1 1 . . 1 1 . . . . . .
+    . . . . 1 1 1 1 1 1 . . . . . .
+    . . . . . 1 1 1 1 . . . . . . .
+    . . . . . c c c c . . . . . . .
+    . . . . c c c c c c . . . . . .
+    . . . c c c c c c 1 c . . . . .
+    . . . c c c c c c c c . . . . .
+    . . . c c c c c c c c 7 . . . .
+    . . . . c c c c c c 7 7 . . . .
+    . . . . 7 c c c c 7 7 7 . . . .
+    . . . . 7 7 7 7 7 7 7 7 . . . .
+    . . . . . 7 7 7 7 7 7 . . . . .
+    . . . . . . 7 7 7 7 . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""))
+frog.ay = 100
+frog.y = 40
