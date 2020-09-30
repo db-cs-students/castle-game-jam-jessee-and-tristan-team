@@ -36,7 +36,7 @@ let frog = sprites.create(img`
     ..............................
     ..............................
 `)
-let my_sprite2 = sprites.create(img`
+let castle = sprites.create(img`
     ..................................................
     ..................................................
     ..................................................
@@ -198,3 +198,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() 
     frog.vy = -100
 })
 info.startCountdown(50)
+castle.follow(frog)
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function on_overlap(castle: Sprite, frog: Sprite) {
+    
+})
