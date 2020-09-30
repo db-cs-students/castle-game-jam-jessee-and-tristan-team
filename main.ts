@@ -80,7 +80,7 @@ scene.setTileMap(img`
     ....................................................................................................
     ....................................................................................................
 `)
-controller.moveSprite(frog)
+controller.moveSprite(frog, 50, 0)
 scene.cameraFollowSprite(frog)
 scene.setTile(7, img`
     7 7 7 7 7 7 7 7 7 7 f f f f 7 7
@@ -192,3 +192,9 @@ let my_sprite4 = sprites.create(img`
     . . . . . . . . . . . . . . . .
 `)
 frog.ay = 100
+info.setScore(0)
+info.setLife(3)
+controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
+    frog.vy = -100
+})
+info.startCountdown(50)

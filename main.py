@@ -79,7 +79,7 @@ scene.set_tile_map(img("""
     ....................................................................................................
     ....................................................................................................
 """))
-controller.move_sprite(frog)
+controller.move_sprite(frog, 50, 0)
 scene.camera_follow_sprite(frog)
 scene.set_tile(7, img("""
     7 7 7 7 7 7 7 7 7 7 f f f f 7 7
@@ -194,3 +194,10 @@ my_sprite4 = sprites.create(img("""
     . . . . . . . . . . . . . . . .
 """))
 frog.ay = 100
+info.set_score(0)
+info.set_life(3)
+def on_event_pressed():
+    frog.vy = -100   
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_event_pressed)
+info.start_countdown(50)
+castle.follow(frog)
