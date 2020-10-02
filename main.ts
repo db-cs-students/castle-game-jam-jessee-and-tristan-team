@@ -76,17 +76,17 @@ let castle = sprites.create(img`
 scene.setTileMap(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111515151
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111555555
-    11111111111111111111111111111111111111111111111111aaaa1111111111111111111111111111a1a1a1a11aaa5f55f5
-    11111111111111a1a1a1111111a1a111a11a1111111111a11aaaaa1a11a1111a11a1111111aa11aa11111111111aaa555555
+    11111111111111111111111111111111111111111111111111aaaa111111111111111111111111111111111a1a1aaa5f55f5
+    11111111111111a111a1111111a1a111a11a1111111111a11aaaaa1a11a1111a11a1111111aa11aa11a11a11111aaa555555
     1111111111a1a111111a11a1a11111a11111111a111a1111aaaaaa1111111a1111111a11a111117111171777777777777777
-    11111a11a11111111111a1a1111111111111777777777777777777111117777777777777777777e7777717eeeeeeeeeeeeee
-    777777777777777777777777777777777777eeeeeeeeeeeeeeeee71111177eeeeeeeeeeeeeeeeeeeeee777eeeeeeeeeeeeee
+    aaaaaa11a11111111111a1a1111111111111777777777777777777222227777777777777777777e7777717eeeeeeeeeeeeee
+    777777777777777777777777777777777777eeeeeeeeeeeeeeeee72222277eeeeeeeeeeeeeeeeeeeeee777eeeeeeeeeeeeee
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee77777777eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 `)
-controller.moveSprite(frog, 50, 50)
+controller.moveSprite(frog, 50, 0)
 scene.cameraFollowSprite(frog)
 scene.setTile(7, img`
     7 7 7 7 7 7 7 7 7 7 f f f f 7 7
@@ -145,7 +145,7 @@ scene.setTile(10, img`
 frog.ay = 100
 info.setScore(0)
 info.setLife(3)
-info.startCountdown(100)
+info.startCountdown(50)
 scene.setTile(10, img`
         a a a a a a a a a a a a a a a a
         a a a a a a a a a a a a a a a a
@@ -165,9 +165,51 @@ scene.setTile(10, img`
         a a a a a a a a a a a a a a a a
     `, true)
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
-    
+    frog.vy = -60
 })
 castle.setPosition(50, 60)
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap(sprite: Sprite, otherSprite: Sprite) {
     sprite.destroy()
+})
+scene.setTile(5, img`
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+        5 5 5 5 5 5 5 4 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+    `, true)
+scene.setTile(2, img`
+        2 2 2 4 2 2 2 2 2 2 2 4 2 2 2 4
+        2 4 2 4 2 2 2 2 4 2 2 4 2 2 2 2
+        2 2 4 2 2 4 4 2 4 2 2 4 2 2 4 2
+        4 4 2 4 2 4 4 2 2 2 2 4 2 4 4 2
+        2 4 2 2 4 4 2 2 4 4 4 4 2 4 2 2
+        2 2 2 4 2 4 2 2 2 2 2 2 2 4 2 2
+        2 2 2 4 2 2 4 2 2 2 2 2 2 4 2 2
+        2 2 2 4 2 2 4 4 2 2 2 2 4 2 2 2
+        2 2 2 4 4 2 2 4 4 2 2 4 4 2 2 2
+        2 2 4 2 4 2 2 2 4 4 4 4 2 2 2 4
+        2 2 4 2 4 2 4 2 2 4 4 2 2 2 2 4
+        2 2 2 2 2 2 2 2 2 4 4 2 2 2 2 2
+        4 4 4 2 2 2 2 2 2 2 4 2 2 4 4 4
+        2 2 2 2 4 4 2 2 2 2 4 2 2 2 2 2
+        2 2 2 2 4 2 2 2 2 2 4 4 2 2 2 2
+        2 2 2 2 4 2 2 2 2 2 2 4 2 2 2 2
+    `, true)
+scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile2(sprite: Sprite) {
+    game.over()
+})
+scene.onHitTile(SpriteKind.Player, 2, function on_hit_tile(frog: Sprite) {
+    game.over()
 })
