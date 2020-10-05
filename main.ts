@@ -252,7 +252,7 @@ scene.setTile(15, img`
     f d d d d d d d d d f d d d d f
     d d d d d d d f f f d d d d d d
 `, true)
-castle.ax = 3
+castle.ax = 2
 frog.ay = 100
 info.startCountdown(80)
 scene.setTile(10, img`
@@ -274,7 +274,10 @@ scene.setTile(10, img`
         c c a a a a a a a a a a a a c c
     `, true)
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
-    frog.vy = -60
+    if (frog.isHittingTile(CollisionDirection.Bottom)) {
+        frog.vy = -60
+    }
+    
 })
 castle.setPosition(50, 40)
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap(sprite: Sprite, otherSprite: Sprite) {
@@ -480,3 +483,6 @@ scene.setBackgroundImage(img`
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee999
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee999
 `)
+game.forever(function on_forever() {
+    scene.cameraShake(3)
+})

@@ -256,7 +256,7 @@ img("""
     d d d d d d d f f f d d d d d d
 """),
 True)
-castle.ax = 3
+castle.ax = 2
 frog.ay = 100
 info.start_countdown(80)
 
@@ -282,7 +282,8 @@ scene.set_tile(10,
     True)
 
 def on_event_pressed():
-    frog.vy = -60
+   if frog.is_hitting_tile(CollisionDirection.BOTTOM): 
+        frog.vy = -60
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_event_pressed)
 
 castle.set_position(50,40)
@@ -502,4 +503,6 @@ scene.set_background_image(img("""
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee999
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee999
 """))
-
+def on_forever():
+    scene.camera_shake(3)
+game.forever(on_forever)
