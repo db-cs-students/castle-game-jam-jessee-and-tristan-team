@@ -520,4 +520,4 @@ game.onUpdate(function on_update() {
     }
     
 })
-game.splash("uhhhh run right")
+game.splash("Run")

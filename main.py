@@ -540,6 +540,4 @@ def on_update():
     else:
         frog.set_image(frog_idle)
 game.on_update(on_update)
-
-
-game.splash("uhhhh run right")
+game.splash("Run")
