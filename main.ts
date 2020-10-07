@@ -4,6 +4,7 @@ Creators:jessee and tristan
 Description:you're a frog who doesn't like the castle.
 
  */
+// game setup/game design
 let frog_moving = img`
     .........................
     ............77777........
@@ -262,6 +263,24 @@ scene.setTile(7, img`
         e e e e e e e e e e e e e e e e
         e e e e e e e e e e e e e e e e
     `, true)
+scene.setTile(5, img`
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+        5 5 5 5 5 5 5 4 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+    `, true)
 scene.setTile(15, img`
     f 2 2 2 4 2 2 2 4 4 2 2 2 4 4 f
     f f f 2 2 2 4 2 2 2 2 2 4 2 f f
@@ -280,6 +299,7 @@ scene.setTile(15, img`
     f d d d d d d d d d f d d d d f
     d d d d d d d f f f d d d d d d
 `, true)
+// gravity and such
 castle.ax = 1.5
 frog.ay = 100
 info.startCountdown(60)
@@ -301,34 +321,18 @@ scene.setTile(10, img`
         c c f f f f f f f f f f f f c c
         c c a a a a a a a a a a a a c c
     `, true)
+// check for collisions
 controller.A.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
     if (frog.isHittingTile(CollisionDirection.Bottom)) {
         frog.vy = -60
     }
     
 })
-castle.setPosition(50, 40)
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap(sprite: Sprite, otherSprite: Sprite) {
     game.over()
 })
-scene.setTile(5, img`
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
-        5 5 5 5 5 5 5 4 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-    `, true)
+castle.setPosition(50, 40)
+// game setup
 scene.setTile(2, img`
         2 2 2 4 2 2 2 2 2 2 2 4 2 2 2 4
         2 4 2 4 2 2 2 2 4 2 2 4 2 2 2 2
@@ -347,6 +351,7 @@ scene.setTile(2, img`
         2 2 2 2 4 2 2 2 2 2 4 4 2 2 2 2
         2 2 2 2 4 2 2 2 2 2 2 4 2 2 2 2
     `, true)
+// win-lose
 scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile2(sprite: Sprite) {
     game.over()
 })
@@ -511,6 +516,7 @@ scene.setBackgroundImage(img`
     cccccccccccccccceeeeefffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffeeeecccccccccccccccccccccc
     ccccccccccccccccceeeeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffeeecccccccccccccccccccccc
 `)
+// animation
 game.onUpdate(function on_update() {
     scene.cameraShake(2.5)
     if (frog.vx > 0) {
