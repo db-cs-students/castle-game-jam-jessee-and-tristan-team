@@ -3,6 +3,8 @@ Title: Frog Castle.
 Creators:jessee and tristan 
 Description:you're a frog who doesn't like the castle.
 """
+
+#game setup/game design
 frog_moving = img("""
     .........................
     ............77777........
@@ -264,6 +266,26 @@ scene.set_tile(7,
     """),
     True)
     
+scene.set_tile(5,
+    img("""
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+        5 5 5 5 5 5 5 4 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
+    """),
+    True)
 scene.set_tile(15,
 img("""
     f 2 2 2 4 2 2 2 4 4 2 2 2 4 4 f
@@ -284,9 +306,11 @@ img("""
     d d d d d d d f f f d d d d d d
 """),
 True)
+
+#gravity and such
 castle.ax = 1.5
 frog.ay = 100
-info.start_countdown(60)
+info.start_countdown(55)
 
 scene.set_tile(10,
     img("""
@@ -309,37 +333,17 @@ scene.set_tile(10,
     """),
     True)
 
+#check for collisions
 def on_event_pressed():
    if frog.is_hitting_tile(CollisionDirection.BOTTOM): 
         frog.vy = -60
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_event_pressed)
 
-castle.set_position(50,40)
-
 def on_overlap(sprite, otherSprite):
     game.over()
 sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_overlap)
-scene.set_tile(5,
-    img("""
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
-        5 5 5 5 5 5 5 4 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-        5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5
-    """),
-    True)
-
+castle.set_position(50,40)
+#game setup
 scene.set_tile(2,
     img("""
         2 2 2 4 2 2 2 2 2 2 2 4 2 2 2 4
@@ -360,14 +364,15 @@ scene.set_tile(2,
         2 2 2 2 4 2 2 2 2 2 2 4 2 2 2 2
     """),
     True)
+
+#win-lose
+def on_hit_tile(sprite):
+    game.over(True)
+scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile)
+
 def on_hit_tile2(sprite):
-    game.over()
-scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile2)
-
-def on_hit_tile(frog):
-        game.over()
-
-scene.on_hit_tile(SpriteKind.player, 2, on_hit_tile)
+ game.over()
+scene.on_hit_tile(SpriteKind.player, 2, on_hit_tile2)
 
 scene.set_tile(13,
     img("""
@@ -532,6 +537,7 @@ scene.set_background_image(img("""
     ccccccccccccccccceeeeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffeeecccccccccccccccccccccc
 """))
 
+#animation
 def on_update():
     scene.camera_shake(2.5)
 
