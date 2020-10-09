@@ -302,7 +302,7 @@ scene.setTile(15, img`
 // gravity and such
 castle.ax = 1.5
 frog.ay = 100
-info.startCountdown(60)
+info.startCountdown(55)
 scene.setTile(10, img`
         c c a a a a a a a a a a a a c c
         c c f f f f f f f f f f f f c c
@@ -352,10 +352,10 @@ scene.setTile(2, img`
         2 2 2 2 4 2 2 2 2 2 2 4 2 2 2 2
     `, true)
 // win-lose
-scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile2(sprite: Sprite) {
-    game.over()
+scene.onHitTile(SpriteKind.Player, 5, function on_hit_tile(sprite: Sprite) {
+    game.over(true)
 })
-scene.onHitTile(SpriteKind.Player, 2, function on_hit_tile(frog: Sprite) {
+scene.onHitTile(SpriteKind.Player, 2, function on_hit_tile2(sprite: Sprite) {
     game.over()
 })
 scene.setTile(13, img`

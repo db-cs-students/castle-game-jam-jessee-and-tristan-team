@@ -310,7 +310,7 @@ True)
 #gravity and such
 castle.ax = 1.5
 frog.ay = 100
-info.start_countdown(60)
+info.start_countdown(55)
 
 scene.set_tile(10,
     img("""
@@ -366,14 +366,13 @@ scene.set_tile(2,
     True)
 
 #win-lose
+def on_hit_tile(sprite):
+    game.over(True)
+scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile)
+
 def on_hit_tile2(sprite):
-    game.over()
-scene.on_hit_tile(SpriteKind.player, 5, on_hit_tile2)
-
-def on_hit_tile(frog):
-     game.over()
-
-scene.on_hit_tile(SpriteKind.player, 2, on_hit_tile)
+ game.over()
+scene.on_hit_tile(SpriteKind.player, 2, on_hit_tile2)
 
 scene.set_tile(13,
     img("""
